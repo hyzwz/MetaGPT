@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Time    : 2023/7/21 11:15
+@Author  : Leo Xiao
+@File    : anthropic_api.py
+"""
+
+import anthropic  # 引入anthropic库
+from anthropic import Anthropic  # 从anthropic库中引入Anthropic类
+
+from metagpt.config import CONFIG  # 引入全局配置
+
+
+class Claude2:
+    """定义一个Claude2类，用于与Anthropic的Claude-2模型进行交互。"""
+
+    def ask(self, prompt):
+        """向Claude-2模型发送一个同步的请求，并返回结果。"""
+        client = Anthropic(api_key=CONFIG.claude_api_key)  # 创建一个Anthropic客户端
+
+        res = client.completions.create(
+            model="claude-2",  # 指定模型为Claude-2
+            prompt=f"{anthropic.HUMAN_PROMPT} {prompt} {anthropic.AI_PROMPT}",  # 设置提示
+            max_tokens_to_sample=1000,  # 设置最大令牌数为1000
+        )
+        return res.completion  # 返回结果
+
+    async def aask(self, prompt):
+        """向Claude-2模型发送一个异步的请求，并返回结果。"""
+        client = Anthropic(api_key=CONFIG.claude_api_key)  # 创建一个Anthropic客户端
+
+        res = client.completions.create(
+            model="claude-2",  # 指定模型为Claude-2
+            prompt=f"{anthropic.HUMAN_PROMPT} {prompt} {anthropic.AI_PROMPT}",  # 设置提示
+            max_tokens_to_sample=1000,  # 设置最大令牌数为1000
+        )
+        return res.completion  # 返回结果

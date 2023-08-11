@@ -17,6 +17,7 @@ from metagpt.logs import logger
 
 class Action(ABC):
     def __init__(self, name: str = '', context=None, llm: LLM = None):
+        # 初始化方法，设置动作的名称，上下文和LLM对象
         self.name: str = name
         if llm is None:
             llm = LLM()
@@ -29,18 +30,20 @@ class Action(ABC):
         self.instruct_content = None
 
     def set_prefix(self, prefix, profile):
-        """Set prefix for later usage"""
+        """设置前缀和配置文件，这些信息可能会在后续的操作中使用"""
         self.prefix = prefix
         self.profile = profile
 
     def __str__(self):
+        # 返回类的名称作为字符串表示
         return self.__class__.__name__
 
     def __repr__(self):
+        # 返回类的名称作为类的官方字符串表示
         return self.__str__()
 
     async def _aask(self, prompt: str, system_msgs: Optional[list[str]] = None) -> str:
-        """Append default prefix"""
+        """异步方法，添加默认前缀并调用LLM的aask方法"""
         if not system_msgs:
             system_msgs = []
         system_msgs.append(self.prefix)

@@ -12,6 +12,9 @@ RPM: 10
 
 #### if Anthropic
 #Anthropic_API_KEY: "YOUR_API_KEY"
+COOKIE: "intercom-device-id-lupk8zyo=f717079e-8aed-424a-9ee4-9e7852bf16ce; sessionKey=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; __cf_bm=8vYi4JG5SNK1UR0k4iN.DJsLztyIFYThtdFtaiWRA4k-1691652688-0-AUcZdR4hl8ri/E7QFNpoc4KVST1zuO417CzFDrZa+vD/SJZ3Vy7ERMnC285JUsnt84nDHVD5DH1mwWTZ0hSsk3k=; intercom-session-lupk8zyo=YTdacmNvaWUvM0lEa2NzTE55Sm9YRkE2bW9HWkcyeGM2Q1E5Qlh6THB6VWxua2NqM20vYW1vbGlScGZjOHNiNC0tL2QzY1diQklCMUpiaTQ0aEdON3E2Zz09--c22cae1596ea8624842f5b597dbc74ac02d7793c"
+ORGANIZATION_UUID: "7b9610d4-0a52-4f43-819d-df93a185a8e1"
+CONVERSATION_UUID: "a48aa5e0-6f25-489d-823c-ea254a301d09"
 
 #### if AZURE, check https://github.com/openai/openai-cookbook/blob/main/examples/azure/chat.ipynb
 
@@ -25,8 +28,9 @@ RPM: 10
 
 ## Visit https://serpapi.com/ to get key.
 #SERPAPI_API_KEY: "YOUR_API_KEY"
+SERPAPI_API_KEY: "7045a23fe7676c46515bde920d7b2906e265fe2d31dc43c294735c219f6cff68"
 ## Visit https://console.cloud.google.com/apis/credentials to get key.
-#GOOGLE_API_KEY: "YOUR_API_KEY"
+GOOGLE_API_KEY: "AIzaSyCjh37NNxjAOQE3TJrxDbm9Zp69nWo_KOg"
 ## Visit https://programmablesearchengine.google.com/controlpanel/create to get id.
 #GOOGLE_CSE_ID: "YOUR_CSE_ID"
 ## Visit https://serper.dev/ to get key.

@@ -13,30 +13,37 @@ from metagpt.provider.base_chatbot import BaseChatbot
 
 
 class BaseGPTAPI(BaseChatbot):
-    """GPT API abstract class, requiring all inheritors to provide a series of standard capabilities"""
+    """GPT API 抽象类，要求所有继承者提供一系列标准能力"""
     system_prompt = 'You are a helpful assistant.'
 
     def _user_msg(self, msg: str) -> dict[str, str]:
+        """生成用户消息"""
         return {"role": "user", "content": msg}
 
     def _assistant_msg(self, msg: str) -> dict[str, str]:
+        """生成助手消息"""
         return {"role": "assistant", "content": msg}
 
     def _system_msg(self, msg: str) -> dict[str, str]:
+        """生成系统消息"""
         return {"role": "system", "content": msg}
 
     def _system_msgs(self, msgs: list[str]) -> list[dict[str, str]]:
+        """生成多个系统消息"""
         return [self._system_msg(msg) for msg in msgs]
 
     def _default_system_msg(self):
+        """生成默认的系统消息"""
         return self._system_msg(self.system_prompt)
 
     def ask(self, msg: str) -> str:
+        """向 GPT API 提问并获取回答"""
         message = [self._default_system_msg(), self._user_msg(msg)]
         rsp = self.completion(message)
         return self.get_choice_text(rsp)
 
     async def aask(self, msg: str, system_msgs: Optional[list[str]] = None) -> str:
+        """异步版本的 ask 方法"""
         if system_msgs:
             message = self._system_msgs(system_msgs) + [self._user_msg(msg)]
         else:
@@ -47,9 +54,11 @@ class BaseGPTAPI(BaseChatbot):
         return rsp
 
     def _extract_assistant_rsp(self, context):
+        """从上下文中提取助手的回答"""
         return "\n".join([i["content"] for i in context if i["role"] == "assistant"])
 
     def ask_batch(self, msgs: list) -> str:
+        """批量提问并获取回答"""
         context = []
         for msg in msgs:
             umsg = self._user_msg(msg)
@@ -60,7 +69,7 @@ class BaseGPTAPI(BaseChatbot):
         return self._extract_assistant_rsp(context)
 
     async def aask_batch(self, msgs: list) -> str:
-        """Sequential questioning"""
+        """异步版本的 ask_batch 方法"""
         context = []
         for msg in msgs:
             umsg = self._user_msg(msg)

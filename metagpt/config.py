@@ -62,6 +62,9 @@ class Config(metaclass=Singleton):
         self.deployment_id = self._get("DEPLOYMENT_ID")
 
         self.claude_api_key = self._get('Anthropic_API_KEY')
+        self.cookie = self._get('COOKIE')
+        self.organization_uuid = self._get('ORGANIZATION_UUID')
+        self.conversation_uuid = self._get('CONVERSATION_UUID')
         self.serpapi_api_key = self._get("SERPAPI_API_KEY")
         self.serper_api_key = self._get("SERPER_API_KEY")
         self.google_api_key = self._get("GOOGLE_API_KEY")

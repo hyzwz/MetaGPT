@@ -5,23 +5,23 @@
 @Author  : alexanderwu
 @File    : base_chatbot.py
 """
-from abc import ABC, abstractmethod
-from dataclasses import dataclass
+from abc import ABC, abstractmethod  # 引入抽象基类和抽象方法装饰器
+from dataclasses import dataclass  # 引入数据类装饰器
 
 
 @dataclass
 class BaseChatbot(ABC):
-    """Abstract GPT class"""
-    mode: str = "API"
+    """定义一个抽象的聊天机器人类"""
+    mode: str = "API"  # 定义一个模式字段，初始值为"API"
 
     @abstractmethod
     def ask(self, msg: str) -> str:
-        """Ask GPT a question and get an answer"""
+        """定义一个抽象方法，用于向聊天机器人提问并获取答案"""
 
     @abstractmethod
     def ask_batch(self, msgs: list) -> str:
-        """Ask GPT multiple questions and get a series of answers"""
+        """定义一个抽象方法，用于向聊天机器人提出一系列问题并获取一系列答案"""
 
     @abstractmethod
     def ask_code(self, msgs: list) -> str:
-        """Ask GPT multiple questions and get a piece of code"""
+        """定义一个抽象方法，用于向聊天机器人提出一系列问题并获取一段代码"""
